@@ -4,6 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
+		// While com fluência e métodos ligados
 		While whileSample = new While();
 		Counter counter = new Counter();
 		whileSample
@@ -15,6 +16,23 @@ public class Main {
 														 //  é a condição e pode ser usada se necessário
 				.now(); // inicia efetivamente a execução do  loop.
 
+		
+		// While único
+		While wh2 = new While();
+		Counter counter2 = new Counter();
+		wh2.doTask(() -> counter2.getIndex() < 10, () -> System.out.println("Task 2"), (conditional)-> counter2.add());
+
+		// Separando os lambdas
+		Counter counter3 = new Counter();
+		
+		Conditional conditional = () -> counter3.getIndex() < 10;
+		Task task = () -> System.out.println("Task 3");
+		CounterChanger changer = (conditionalParam)-> counter3.add();
+		wh2.doTask(conditional, task, changer);
+
+		
+		
+		// For único
 		For forSample = new For();
 		forSample.firstToLimit(0, 10, (i) -> System.out.println("I'm! " + i));
 		forSample.firstToLimit(10, (i) -> System.out.println("I'm! " + i));

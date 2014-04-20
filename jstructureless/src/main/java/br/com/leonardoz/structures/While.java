@@ -2,17 +2,30 @@ package br.com.leonardoz.structures;
 
 public class While {
 
-	private Conditional c;
-	private Task t;
+	private Conditional conditional;
+	private Task task;
 	private CounterChanger changer;
 
+	public void doTask(Conditional conditional, Task task) {
+		while (conditional.condition()){
+			task.execute();
+		}
+	}
+
+	public void doTask(Conditional conditional, Task task, CounterChanger changer) {
+		while (conditional.condition()){
+			task.execute();
+			changer.applyIn(conditional);
+		}
+	}
+	
 	public While condition(Conditional c) {
-		this.c = c;
+		this.conditional = c;
 		return this;
 	}
 
 	public While doThis(Task t) {
-		this.t = t;
+		this.task = t;
 		return this;
 	}
 
@@ -21,7 +34,7 @@ public class While {
 	}
 
 	public While with(Conditional c) {
-		this.c = c;
+		this.conditional = c;
 		return this;
 	}
 
@@ -35,10 +48,10 @@ public class While {
 	}
 
 	public void now() {
-		while (c.condition()) {
-			t.execute();
+		while (conditional.condition()) {
+			task.execute();
 			if (changer != null) {
-				changer.applyIn(c);
+				changer.applyIn(conditional);
 			}
 		}
 	}
