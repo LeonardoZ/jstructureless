@@ -1,5 +1,8 @@
 package br.com.leonardoz.structures;
 
+import java.util.Arrays;
+import java.util.Iterator;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -14,6 +17,19 @@ public class Main {
 				.changeCounter((condit) -> counter.add()) // aplica um modificador ao contador se necessáro
 														  // Ex.: interable.next();	Condit 
 														 //  é a condição e pode ser usada se necessário
+				.now(); // inicia efetivamente a execução do  loop.
+
+		
+		// While iterator
+		While whileSample2 = new While();
+		Iterator<Integer> iterator = Arrays.asList(1,2,3,4,5,6,7,8,9,0).iterator();
+		Task taskIterator = () -> {
+			Integer next = iterator.next();
+			System.out.println("Number: "+next);
+		};		
+		whileSample2
+				.doThis(taskIterator).with()
+				.condition(() -> iterator.hasNext()) // condição para continuidade do loop
 				.now(); // inicia efetivamente a execução do  loop.
 
 		
