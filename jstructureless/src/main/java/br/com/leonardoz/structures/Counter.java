@@ -7,6 +7,10 @@ public class Counter {
 	public Integer add() {
 		return index++;
 	}
+	
+	public Integer add(Integer val) {
+		return index+=val;
+	}
 
 	public Integer remove() {
 		return index--;
